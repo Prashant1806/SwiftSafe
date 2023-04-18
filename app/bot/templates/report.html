@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Report{% endblock %}
+
+{% block content %}
+  <h1>Report</h1>
+  <p>A report has been generated for the following accounts:</p>
+  <ul>
+    <li>{{ username1 }}</li>
+    <li>{{ username2 }}</li>
+  </ul>
+  <h2>Comparison Results</h2>
+  {% if matched %}
+    <p>The accounts match!</p>
+  {% else %}
+    <p>The accounts do not match.</p>
+  {% endif %}
+  <h2>Messages:</h2>
+  {% if messages %}
+    {% for message in messages %}
+      <p>{{ message }}</p>
+    {% endfor %}
+  {% else %}
+    <p>No messages were found.</p>
+  {% endif %}
+  <h2>Evidence:</h2>
+  <p>Here are the screenshots that were used to generate this report:</p>
+  {% for screenshot in screenshots %}
+    <img src="{{ url_for('static', filename=screenshot) }}" alt="Screenshot">
+  {% endfor %}
+{% endblock %}
